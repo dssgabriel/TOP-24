@@ -1,0 +1,15 @@
+# for gcc compiler on linux
+# copy to make.def
+CC          = gcc
+CLINKER     = $(CC)
+OPTFLAGS    = -fopenmp -g
+LIBS        = -lm
+NPART       =MINI
+#NPART       =MEDIUM
+#NPART       =MAXI
+
+CFLAGS	  = $(OPTFLAGS) -D$(NPART)
+
+OBJ=o
+EXE=
+RM=rm
