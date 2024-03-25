@@ -30,9 +30,7 @@ int main(int argc, char* argv[argc + 1]) {
     saxpy(res, x, y, a, size);
     for (int i = 0; i < 100; ++i) {
         printf("res[%d] = %d ; ", i, res[i]);
-        if ((i + 1) % 10 == 0) {
-            printf("\n");
-        }
+        if ((i + 1) % 10 == 0) { printf("\n"); }
     }
 
     return 1;
