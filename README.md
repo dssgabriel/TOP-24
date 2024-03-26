@@ -79,3 +79,4 @@ Exercises are corrected during class, and corrections will _not_ be given.
 
 - A guide on [Modern CMake](https://cliutils.gitlab.io/modern-cmake/)
 - [Ninja build system](https://ninja-build.org/)
+- [Modern C](https://inria.hal.science/hal-02383654) by Jens Gustedt (researcher at INRIA Strasbourg and ISO C standards committee member)
