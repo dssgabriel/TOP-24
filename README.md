@@ -4,29 +4,29 @@
 
 ### Descrition & Objectives
 
-This class provides an overview of common optimization techniques in parallel & distributed execution contexts. It covers the technical foundations of how to leverage tools such as compiler directives, debuggers, and profilers to optimize HPC applications.
+This class provides an overview of common optimization techniques in parallel & distributed execution contexts. It covers the technical foundations of how to leverage tools such as compiler directives, debuggers, and profilers to optimize HPC applications. By the end of the course, students should have expertise on the main performance issues tied to parallelization: how to identify and fix them.
 
 The students are expected to learn and understand:
-- using static analysis tools to pinpoint performance hotspots;
-- using runtime profiling to characterize the performance profile of applications;
-- efficient inter-process communications using MPI;
-- "advanced" use of OpenMP directives;
-- leveraging compiler builtins, intrinsics, and assembly programming to ensure vectorization.
+- parallel and distributed architectures
+- performance analysis methodology: using static and dynamic analysis tools to pinpoint performance hotspots and characterize the performance profile of HPC applications;
+- quantitative and qualitative analysis of the main parallel bottlenecks: communication & synchronization overhead, load balancing, network saturation;
+- advanced use of compiler builtins, OpenMP directives and intrinsics;
+- leveraging parallel debugging tools (DDT, Marmot, Thread Checker), as well as profilers (Tau, Scalasca, MAQAO, Kojak, Vampir, ...).
 
 ### Lectures
 
-Tuesday, 13:45 - 17:00 CET, Amphitheater Gentiane, Rabelais building, Guyancourt campus
+Tuesday, 13:45 - 17:00 CET, CN2, Rabelais building, Guyancourt campus
 
 ### Lab sessions
 
-Tuesdays, 9:30 - 12:45 CET, Amphitheater Gentiane, Rabelais building, Guyancourt campus
+Tuesdays, 9:30 - 12:45 CET, CN2, Rabelais building, Guyancourt campus
 
 ### Examination
 
 This class is evaluated for the 1st Year of the Paris-Saclay University Master's Degree in High Performance Computing & Simulation.
 | | |
 |-----------------------------------------------|--------------------------------------------------------------|
-| **ECTS Credits**                              | 6 credits (out of 30 semester credits)                       |
+| **ECTS Credits**                              | 3 credits (out of 30 semester credits)                       |
 | **Examiner(s)**                               | H. Taboada, G. Dos Santos                                    |
 | **Mode of examination**                       | One written exam, one project                                |
 | **Additional information on the examination** | % of each exam for the course grade: _TBD_                   |
@@ -76,3 +76,6 @@ Exercises are corrected during class, and corrections will _not_ be given.
 
 > [!TIP]
 > Valuable resources for this course will be added here.
+
+- A guide on [Modern CMake](https://cliutils.gitlab.io/modern-cmake/)
+- [Ninja build system](https://ninja-build.org/)
