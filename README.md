@@ -77,6 +77,20 @@ Exercises are corrected during class, and corrections will _not_ be given.
 > [!TIP]
 > Valuable resources for this course will be added here.
 
+Build systems:
 - A guide on [Modern CMake](https://cliutils.gitlab.io/modern-cmake/)
 - [Ninja build system](https://ninja-build.org/)
+
+C Programming language:
 - [Modern C](https://inria.hal.science/hal-02383654) by Jens Gustedt (researcher at INRIA Strasbourg and ISO C standards committee member)
+- [Latest draft of the ISO C standard](https://open-std.org/jtc1/sc22/wg14/www/docs/n3220.pdf) (as of 2024-03-26)
+
+Computer Architecture:
+- [What every programmer should know about memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
+- [Computer Architecture: A quantitative approach](https://dl.acm.org/doi/book/10.5555/1999263)
+- [C++ on sea 2023, a talk by JF Bastien - \*(char\*)0 = 0;](https://youtu.be/dFIqNZ8VbRY) (treats about memory hierarchy: caches, TLB, virtual/physical memory)
+
+Memory:
+- [Kokkos tutorial slides](https://github.com/kokkos/kokkos-tutorials/blob/main/Intro-Full/Slides/KokkosTutorial_ORNL20.pdf) (specifically slides on memory layout, slides 74-84)
+- [Cache coherency protocols](https://en.wikipedia.org/wiki/Cache_coherency_protocols_(examples))
+
