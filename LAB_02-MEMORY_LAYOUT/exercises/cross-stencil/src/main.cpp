@@ -1,3 +1,4 @@
+#include "mdspan_type_util.hpp"
 #ifdef BLOCKED
 #include "blocked.hpp"
 #else
@@ -15,7 +16,7 @@ constexpr size_t NEPOCHS = 11;
 
 namespace cross_stencil {
 /// Initialize a 2D mdpsan of double with values in the range [0.0, 1.0).
-auto init(mdspan<double, dextents_2d> mdspn) -> void {
+auto init(mdspan_2d<double> mdspn) -> void {
     for (size_t i = 1; i < mdspn.extent(0) - 2; ++i) {
         for (size_t j = 1; j < mdspn.extent(1) - 2; ++j) {
             mdspn(i, j) = drand48();
@@ -44,8 +45,8 @@ auto main(int argc, char* argv[]) -> int {
     std::vector<double> input((DIM_X + 2) * (DIM_Y + 2));
     std::vector<double> output((DIM_X + 2) * (DIM_Y + 2));
     fmt::print(stderr, "{}x{}: alloc...\r", DIM_X, DIM_Y);
-    mdspan ms_in{ input.data(), extents{ DIM_X + 2, DIM_Y + 2 } };
-    mdspan ms_out{ output.data(), extents{ DIM_X + 2, DIM_Y + 2 } };
+    Kokkos::mdspan ms_in{ input.data(), Kokkos::extents{ DIM_X + 2, DIM_Y + 2 } };
+    Kokkos::mdspan ms_out{ output.data(), Kokkos::extents{ DIM_X + 2, DIM_Y + 2 } };
 
     fmt::print(stderr, "{}x{}: init...\r", DIM_X, DIM_Y);
     cross_stencil::init(ms_in);

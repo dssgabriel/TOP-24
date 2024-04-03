@@ -5,7 +5,7 @@
 #include <omp.h>
 
 namespace cross_stencil {
-auto run(mdspan<double, dextents_2d> ms_out, mdspan<double, dextents_2d> const ms_in) -> void {
+auto run(mdspan_2d<double> ms_out, mdspan_2d<double> const ms_in) -> void {
     assert(ms_out.extent(0) == ms_in.extent(0) && ms_out.extent(1) == ms_in.extent(1));
 
 #pragma omp parallel for
