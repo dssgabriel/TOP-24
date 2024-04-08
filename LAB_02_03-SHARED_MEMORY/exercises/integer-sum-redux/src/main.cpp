@@ -1,13 +1,11 @@
 #include "cycle.h"
 #include "sequential.hpp"
 
-#include <cassert>
 #include <cmath>
 #include <cstdint>
 #include <cstdlib>
 #include <fmt/core.h>
 #include <functional>
-#include <iostream>
 #include <numeric>
 #include <span>
 #include <string_view>
@@ -70,11 +68,11 @@ auto benchmark(std::string_view name, size_t nelems, Fn fn, Args&&... args)
     std::array<double, NEPOCHS> epochs;
     std::invoke_result_t<Fn, Args...> res;
 
-    for (auto it = 0; it < NEPOCHS; ++it) {
-        auto t0    = // ???
+    for (size_t it = 0; it < NEPOCHS; ++it) {
+        auto t0    = /* ??? */;
         res = std::invoke(fn, std::forward<Args>(args)...);
-        auto t1    = // ???
-        epochs[it] = // ???
+        auto t1    = /* ??? */;
+        epochs[it] = /* ??? */;
     }
 
     auto mean = utils::mean(epochs);
