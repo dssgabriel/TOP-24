@@ -65,15 +65,16 @@ auto check_result(std::string_view name, int64_t reference, int64_t result) {
 
 template <typename Fn, typename... Args>
 auto benchmark(std::string_view name, size_t nelems, Fn fn, Args&&... args)
-    -> std::invoke_result_t<Fn, Args...> {
+    -> std::invoke_result_t<Fn, Args...>
+{
     std::array<double, NEPOCHS> epochs;
     std::invoke_result_t<Fn, Args...> res;
 
     for (auto it = 0; it < NEPOCHS; ++it) {
-        auto t0 = // ???
-            res = std::invoke(fn, std::forward<Args>(args)...);
-        auto t1 =        // ???
-            epochs[it] = // ???
+        auto t0    = // ???
+        res = std::invoke(fn, std::forward<Args>(args)...);
+        auto t1    = // ???
+        epochs[it] = // ???
     }
 
     auto mean = utils::mean(epochs);
