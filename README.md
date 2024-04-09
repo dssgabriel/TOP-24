@@ -79,11 +79,15 @@ Exercises are corrected during class, and corrections will _not_ be given.
 
 Build systems:
 - A guide on [Modern CMake](https://cliutils.gitlab.io/modern-cmake/)
-- [Ninja build system](https://ninja-build.org/)
+- The [Meson build system](https://mesonbuild.com/index.html)
+- [Ninja: a small & fast build system](https://ninja-build.org/)
 
 C Programming language:
 - [Modern C](https://inria.hal.science/hal-02383654) by Jens Gustedt (researcher at INRIA Strasbourg and ISO C standards committee member)
 - [Latest draft of the ISO C standard](https://open-std.org/jtc1/sc22/wg14/www/docs/n3220.pdf) (as of 2024-03-26)
+
+C++ Programming language:
+- [A standard C++ multidimensional container abstraction: `std::mdspan`](https://en.cppreference.com/w/cpp/header/mdspan) (also see its paper: [P0009](https://open-std.org/jtc1/sc22/wg21/docs/papers/2022/p0009r18.html))
 
 Computer Architecture:
 - [What every programmer should know about memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
