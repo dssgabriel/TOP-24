@@ -95,7 +95,7 @@ Computer Architecture:
 - [What every programmer should know about memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 
 Memory:
-- [Kokkos tutorial] slides(https://github.com/kokkos/kokkos-tutorials/blob/main/Intro-Full/Slides/KokkosTutorial_ORNL20.pdf) (specifically slides on memory layout, slides 74-84)
+- [Kokkos tutorial](https://github.com/kokkos/kokkos-tutorials/blob/main/Intro-Full/Slides/KokkosTutorial_ORNL20.pdf) slides (specifically slides on memory layout, slides 74-84)
 - [C++ on sea 2023, a talk by JF Bastien - \*(char\*)0 = 0;](https://youtu.be/dFIqNZ8VbRY) (treats about memory hierarchy: caches, TLB, virtual/physical memory)
 - [Cache coherency protocols](https://en.wikipedia.org/wiki/Cache_coherency_protocols_(examples))
 - WG21 P0009: [ISO C++23's `std::mdspan`](https://open-std.org/jtc1/sc22/wg21/docs/papers/2022/p0009r18.html)
