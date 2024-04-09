@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import argparse
 import subprocess
 import sys
 import matplotlib.pyplot as plt
@@ -7,7 +8,9 @@ from typing import List, Tuple
 from matplotlib import ticker
 
 
-def bench_strong_scalability(bin_path: str, max_threads=64) -> List[Tuple[int, float]]:
+def bench_strong_scalability(
+    bin_path: str, max_threads: int = 64
+) -> List[Tuple[int, float]]:
     thrd = 1
     data = [(thrd, 1.0)]
     time_ref = float(
@@ -16,6 +19,7 @@ def bench_strong_scalability(bin_path: str, max_threads=64) -> List[Tuple[int, f
         .strip()
         .split()[1]
     )
+
     while thrd < max_threads:
         thrd *= 2
         print(
@@ -35,7 +39,7 @@ def bench_strong_scalability(bin_path: str, max_threads=64) -> List[Tuple[int, f
 
 
 def bench_weak_scalability(
-    bin_path: str, max_threads=64, max_dim=1000
+    bin_path: str, max_threads: int = 64, max_dim: int = 1000
 ) -> List[Tuple[int, float]]:
     thrd = 1
     dim_x = 100
@@ -47,6 +51,7 @@ def bench_weak_scalability(
         .strip()
         .split()[1]
     )
+
     while thrd < max_threads and (dim_x <= max_dim or dim_y <= max_dim):
         thrd *= 2
         if dim_x <= max_dim:
@@ -70,20 +75,21 @@ def bench_weak_scalability(
 def plot_results(data: List[Tuple[int, float]], title: str, mode: str) -> None:
     thrds, times = zip(*data)
 
-    plt.figure()
+    fig, ax = plt.subplots()
     if mode == "strong":
-        plt.plot(
+        ax.plot(
             [thrds[0], thrds[-1]],
             [times[0], times[0] * thrds[-1]],
             color="r",
             linestyle="-",
             label="Ideal speedup",
         )
-        plt.ylim(ymin=0.8)
+        ax.set_yscale("log", base=2)
+        ax.get_yaxis().set_major_formatter(ticker.ScalarFormatter())
+        ax.get_yaxis().set_minor_formatter(ticker.NullFormatter())
     elif mode == "weak":
-        plt.axhline(y=1, color="r", linestyle="-", label="Ideal efficiency")
-        plt.ylim(ymin=-0.2, ymax=1.2)
-    plt.plot(
+        ax.axhline(y=1, color="r", linestyle="-", label="Ideal efficiency")
+    ax.plot(
         thrds,
         times,
         marker="o",
@@ -91,36 +97,51 @@ def plot_results(data: List[Tuple[int, float]], title: str, mode: str) -> None:
         label=f'Real {"speedup" if mode == "strong" else "efficiency"}',
     )
 
-    plt.xscale("log", base=2)
-    plt.xticks(list(thrds))
-    plt.xlabel("Number of OpenMP threads")
-    plt.ylabel(f'{"Speedup" if mode == "strong" else "Efficiency"}')
-    plt.title(title)
-    plt.grid(True)
-    plt.legend()
+    ax.set_xscale("log", base=2)
+    ax.set_xticks(list(thrds))
+    ax.get_xaxis().set_major_formatter(ticker.ScalarFormatter())
+    ax.get_xaxis().set_minor_formatter(ticker.NullFormatter())
+    ax.set_xlabel("Number of OpenMP threads")
+    ax.set_ylabel(f'{"Speedup" if mode == "strong" else "Efficiency"}')
+    ax.set_title(title)
+    ax.grid(True)
+    ax.legend()
 
     plt.savefig(f'{title.lower().replace(" ", "_")}.png')
     plt.show()
 
 
 def main() -> int:
-    if len(sys.argv) != 3:
-        print("Usage: python bench.py <BIN> <MODE>")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(
+        description="Run a scaling benchmark on the `mesh` program"
+    )
+    parser.add_argument("exec_path", type=str, help="Path to the `mesh` executable")
+    parser.add_argument(
+        "mode",
+        choices=["strong", "weak"],
+        help="Benchmarking mode: strong or weak scaling",
+    )
+    parser.add_argument(
+        "-t",
+        "--max_threads",
+        type=int,
+        default=8,
+        help="Maximum number of OpenMP threads to use",
+    )
 
-    bin = sys.argv[1]
-    mode = sys.argv[2]
-    if mode == "strong":
-        data = bench_strong_scalability(bin, 8)
-        plot_results(data, "Mesh strong scaling speedup", "strong")
-    elif mode == "weak":
-        data = bench_weak_scalability(bin, 8)
-        plot_results(data, "Mesh weak scaling efficiency", "weak")
-    else:
-        print(
-            f"\x1b[1;31merror:\x1b[0m unknown mode `{mode}` (pick one of: [strong, weak])"
-        )
-        return -1
+    args = parser.parse_args()
+    match args.mode:
+        case "strong":
+            data = bench_strong_scalability(args.exec_path, args.max_threads)
+            plot_results(data, "Mesh strong scaling speedup", "strong")
+        case "weak":
+            data = bench_weak_scalability(args.exec_path, args.max_threads)
+            plot_results(data, "Mesh weak scaling efficiency", "weak")
+        case _:
+            print(
+                f"\x1b[1;31merror:\x1b[0m unknown mode `{mode}` (pick one of: [strong, weak])"
+            )
+            sys.exit(-1)
 
     return 0
 
